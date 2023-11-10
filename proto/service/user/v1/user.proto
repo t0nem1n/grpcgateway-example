@@ -1,0 +1,27 @@
+syntax="proto3";
+
+import "google/api/annotations.proto";
+
+import "service/task/v1/task.proto";
+
+
+package proto.service.user.v1;
+option go_package = "test_grpc_go/proto/gen/service/user/v1;user";
+
+
+service UserService {
+    rpc SayHello (HelloRequest) returns (HelloResponse) {
+        option (google.api.http) = {
+            get: "/user/v1/sayHello"
+        };
+    }
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloResponse {
+    string msg = 1;
+    task.v1.Task task = 2;
+}
